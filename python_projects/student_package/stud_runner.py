@@ -13,7 +13,7 @@ student1.studentMailid ="jack@gmail.com"
 student1.studentPercentage = 45.2
 
 student2.studentRollno = 1002
-student2.studentName = "Max1"
+student2.studentName = "Max5"
 student2.studentMailid ="max@gmail.com"
 student2.studentPercentage = 85.2
 
