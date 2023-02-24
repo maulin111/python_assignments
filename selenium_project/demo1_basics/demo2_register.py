@@ -3,6 +3,7 @@ import time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 driver = webdriver.Chrome()
 driver.maximize_window()
@@ -18,6 +19,7 @@ driver.find_element(By.NAME,"lastname").send_keys("Doe")
 driver.find_element(By.ID,"password_step_input").send_keys("Test@123")
 driver.find_element(By.XPATH,'(//input[@type="radio"])[2]').click()
 driver.find_element(By.NAME,'websubmit').click()
+Select(driver.find_element(By.ID, 'year')).select_by_value('1997')
 time.sleep(2)
 
 

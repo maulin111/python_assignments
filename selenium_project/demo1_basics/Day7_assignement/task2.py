@@ -1,24 +1,24 @@
-import time
-
 from selenium import webdriver
+import time
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 driver = webdriver.Chrome()
 driver.maximize_window()
 driver.implicitly_wait(10)
-url = "https://www.salesforce.com/in/form/signup/freetrial-sales/"
-driver.get(url)
-driver.find_element(By.NAME, "UserFirstName").send_keys("John")
-driver.find_element(By.NAME, "UserLastName").send_keys("wick")
-driver.find_element(By.NAME, "UserEmail").send_keys("John@abc.com")
-driver.find_element(By.XPATH, "//option[@value='IT_Manager_AP']").click()
-driver.find_element(By.NAME, "CompanyName").send_keys("Einfochips")
-driver.find_element(By.XPATH, "//option[@value='250']").click()
-driver.find_element(By.XPATH, "//option[@value='GB']").click()
-driver.find_element(By.XPATH, "//span[@class='error-msg-block']/../div[@class='checkbox-ui']").click()
-driver.find_element(By.XPATH, "//button[normalize-space()='start my free trial']").click()
-time.sleep(1)
-x = driver.find_element(By.XPATH, "//span[.='Enter a valid phone number']").text
-assert x == "Enter a valid phone number"
-print(x," - pass")
-time.sleep(1)
+driver.get("https://www.salesforce.com/in/form/signup/freetrial-sales/")
+time.sleep(3)
+driver.find_element(By.NAME, 'UserFirstName').send_keys('John')
+driver.find_element(By.NAME, 'UserLastName').send_keys('wick')
+driver.find_element(By.NAME, 'UserEmail').send_keys('john@gmail.com')
+driver.find_element(By.NAME, 'CompanyName').send_keys('eInfochip PVT LTD')
+Select(driver.find_element(By.NAME, 'UserTitle')).select_by_value('IT_Manager_AP')
+Select(driver.find_element(By.NAME, 'CompanyEmployees')).select_by_value('250')
+Select(driver.find_element(By.NAME, 'CompanyCountry')).select_by_visible_text('United Kingdom')
+driver.find_element(By.NAME, 'start my free trial').click()
+error_message = driver.find_element(By.XPATH, "//span[contains(@id,'UserPhone-')]").text
+print(error_message)
+assert error_message == 'Enter a valid phone number'
+
+time.sleep(5)
+driver.quit()
