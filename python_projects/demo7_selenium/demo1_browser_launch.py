@@ -5,7 +5,7 @@ from selenium import webdriver
 driver = webdriver.Chrome()
 
 # URL of website
-url = "https://www.google.com/"
+url = "https://www.facebook.com/"
 
 # Opening the website
 driver.get(url)
