@@ -19,5 +19,4 @@ action.key_down(webdriver.Keys.SHIFT)\
     .send_keys(webdriver.Keys.ARROW_DOWN).send_keys(webdriver.Keys.ARROW_DOWN)\
     .pause(1).send_keys(webdriver.Keys.ENTER).perform()
 
-# action.scroll_to_element(driver.find_element(By.))
 time.sleep(5)
