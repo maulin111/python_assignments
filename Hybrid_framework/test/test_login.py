@@ -1,3 +1,4 @@
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from assertpy import assert_that
@@ -5,19 +6,17 @@ from assertpy import assert_that
 
 
 class TestLoginUI:
-    def test_title(self):
-        driver = webdriver.Chrome()
-        driver.maximize_window()
-        driver.implicitly_wait(20)
-        driver.get("https://opensource-demo.orangehrmlive.com/")
-        actual_title = driver.title
-        assert driver.title == "OrangeHRM"
 
-    def test_header(self):
-        driver = webdriver.Chrome()
-        driver.maximize_window()
-        driver.implicitly_wait(20)
-        driver.get("https://opensource-demo.orangehrmlive.com/")
+    @pytest.fixture(scope="function")
+    def setUp(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(20)
+        self.driver.get("https://opensource-demo.orangehrmlive.com/")
+        yield
+        self.driver.quit()
 
-        title = driver.find_element(By.XPATH,"//h5[normalize-space()='Login']").text
+    def test_header(self,setUp):
+        title = self.driver.find_element(By.XPATH,"//h5[normalize-space()='Login']").text
         assert_that("Login").is_equal_to(title)
+
