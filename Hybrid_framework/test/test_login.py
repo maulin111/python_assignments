@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 import pytest
 from assertpy import assert_that
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 from base.webdriver_listener import WebDriverWrapper
 from utilities import data_source
@@ -30,6 +32,10 @@ class TestAddEmployee(WebDriverWrapper):
 
         actual_profile_header = self.driver.find_element(By.XPATH,
                                                          f"//h6[contains(normalize-space(),'{firstname}')]").text
+        wait = WebDriverWait(self.driver, 30)
+        wait.until(
+            expected_conditions.text_to_be_present_in_element_attribute((By.NAME, "firstName"), "value", firstname))
+
         actual_first_name = self.driver.find_element(By.NAME, "firstName").get_attribute("value")
 
         assert_that(expected_profile_header).is_equal_to(actual_profile_header)
