@@ -59,3 +59,25 @@ def greet(name, counter):
     return f"Hi, {name}!", counter + 1
 
 main()
+
+#prime number program
+
+n = int(input("Enter number of element: "))
+if n > 1:
+    for i in range(2, int(n/2)+1):
+        if (n % i == 0):
+            print(n, "is not a prime number")
+            break
+    else:
+        print(n, "number is prime")
+
+# Fibonanci series
+
+num = int(input("Enter input number: "))
+n1, n2 = 0, 1
+print("Fibonacci Series:", n1, n2, end=" ")
+for i in range(2, num):
+    n3 = n1 + n2
+    n1 = n2
+    n2 = n3
+    print(n3, end=" ")
