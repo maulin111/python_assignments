@@ -14,6 +14,7 @@ from utilities import data_source
 
 class TestAddEmployee(WebDriverWrapper):
 
+
     @pytest.mark.parametrize(
         "username, password, firstname, middlename, lastname, expected_profile_header,expected_firstname",
         data_source.test_add_valid_employee_data
@@ -40,6 +41,7 @@ class TestAddEmployee(WebDriverWrapper):
 
         assert_that(expected_profile_header).is_equal_to(actual_profile_header)
         assert_that(expected_firstname).is_equal_to(actual_first_name)
+
 
 from utilities import data_source
 

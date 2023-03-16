@@ -44,3 +44,8 @@ print(list)
 
 
 print(df.values.tolist())
+
+
+#Read JSON file
+
+dic=pandas.read_json(filepath_or_buffer="../test_data/data.json",typ="dictionary")
