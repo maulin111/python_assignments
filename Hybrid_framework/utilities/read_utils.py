@@ -1,15 +1,30 @@
-
+"""All read, write activities on files can be done using this module"""
 import pandas
+
+"""Method to convert csv file to list of list"""
 
 
 def get_csv_as_list(file_path):
     df = pandas.read_csv(filepath_or_buffer=file_path, delimiter=";")
     return df.values.tolist()
 
-def get_sheet_as_list(filepath, sheetname):
-    df = pandas.read_excel(io = filepath,sheet_name=sheetname)
+
+"""Method to convert sheet into list of list"""
+
+
+def get_sheet_as_list(file_path, sheet_name):
+    df = pandas.read_excel(io=file_path, sheet_name=sheet_name)
     return df.values.tolist()
 
+
+"""Method to get value from json using key"""
+
+
 def get_value_from_json(file_path, key):
-    dic = pandas.read_json(path_or_buf=file_path,typ="dictionary")
+    dic = pandas.read_json(path_or_buf=file_path, typ="dictionary")
     return dic[key]
+
+
+def get_json_as_dic(file_path, key):
+    output = pandas.read_json(path_or_buf=file_path, typ="dictionary")
+    return output
